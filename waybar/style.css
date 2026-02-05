@@ -1,0 +1,24 @@
+* {
+  font-family: OpenDyslexicM Nerd Font;
+  font-size: 10px;
+  font-weight: bold;
+  background-color: #11111b;
+  padding: 0 0.4em;
+}
+
+#network,
+#pulseaudio {
+  color: #f5e0dc;
+}
+
+#cpu,
+#memory,
+#temperature {
+  color: #b4befe;
+}
+
+#battery,
+#backlight,
+#clock {
+  color: #f9e2af;
+}
