@@ -63,9 +63,9 @@
   },
 
   "modules-left": [
-      "hyprland/workspaces",
+      "hyprland/workspaces"
       // "hyprland/mode",
-      "hyprland/window"
+      // "hyprland/window"
 
   ],
 
