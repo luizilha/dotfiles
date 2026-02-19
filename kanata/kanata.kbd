@@ -1,37 +1,41 @@
 (defcfg
   process-unmapped-keys yes
   concurrent-tap-hold yes
+  linux-continue-if-no-devs-found yes
 )
 
 ;; 1. Mapeamento físico das teclas (QWERTY)
-;; Adicionamos a tecla 'g' na lista
 (defsrc
-  a h j k l ; u i e r m , q w o p s f g
+  q w e r   u i o p   a s f g   h j k l ;   n m , .
 )
 
 ;; 2. Definição dos gatilhos (Hold)
 (defalias
-  a_nav (tap-hold 200 200 a (layer-toggle nav))
+  a_nav   (tap-hold 200 200 a (layer-toggle nav))
+  q_num   (tap-hold 200 200 q (layer-toggle numeric))
   scl_sym (tap-hold 200 200 ; (layer-toggle symbols))
-  f_sup (tap-hold 200 200 f lmet)
-  
-  ;; Gatilhos para Control
-  s_ctl (tap-hold 200 200 s lctl)
-  l_ctl (tap-hold 200 200 l rctl)
+  f_sup   (tap-hold 200 200 f lmet)
+  s_ctl   (tap-hold 200 200 s lctl)
+  l_ctl   (tap-hold 200 200 l rctl)
 )
 
 ;; 3. Camada padrão (Default)
+;; Corrigido: l_ctl agora está na quarta posição do bloco h j k l ;
 (deflayer default
-  @a_nav _ _ _ @l_ctl @scl_sym _ _ _ _ _ _ _ _ _ _ @s_ctl @f_sup _
+  @q_num w e r   u i o p   @a_nav @s_ctl @f_sup g   h j k @l_ctl @scl_sym   n m , .
 )
 
-;; 4. Camada de Navegação (Ativada ao segurar A)
-;; Agora: Segurar A + tocar G = ESC
+;; 4. Camada de Navegação (Segurando A)
 (deflayer nav
-  _ left down up right _ _ _ _ _ _ _ _ _ - = _ _ esc
+  _ S-2 S-3 S-4   _ _ - =   _ _ _ esc   left down up right _   _ _ _ _
 )
 
-;; 5. Camada de Símbolos (Ativada ao segurar ;)
+;; 5. Camada de Símbolos (Segurando ;)
 (deflayer symbols
-  S-1 _ / _ _ _ S-9 S-0 [ ] S-[ S-] S-\ S-7 _ _ S-grv _ _
+  S-\ S-7 [ ]   S-9 S-0 _ _   S-1 S-grv _ _   _ / _ _ _   _ S-[ S-] _
+)
+
+;; 6. Camada Numérica (Segurando Q)
+(deflayer numeric
+  _ _ _ _   7 8 9 _   _ _ _ _   _ 4 5 6 _   0 1 2 3
 )
